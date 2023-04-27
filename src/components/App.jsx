@@ -35,9 +35,11 @@ export class App extends React.Component {
   };
 
   handleFilter = () =>
-    this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
-    );
+    this.state.filter
+      ? this.state.contacts.filter(contact =>
+          contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+        )
+      : this.state.contacts;
 
   handleDelete = id => {
     this.setState(prevState => ({
@@ -53,9 +55,7 @@ export class App extends React.Component {
         <h2 className={styles.title}>Contacts</h2>
         <Filter inputSearch={this.handleSearch} />
         <ContactsList
-          filteredArr={this.handleFilter()}
-          contacts={this.state.contacts}
-          filter={this.state.filter}
+          contacts={this.handleFilter()}
           onDelete={this.handleDelete}
         />
       </div>
