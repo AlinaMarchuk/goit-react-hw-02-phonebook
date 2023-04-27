@@ -5,7 +5,7 @@ import styles from './ContactsList.module.css';
 const ContactsList = ({ contacts, onDelete }) => {
   return (
     <ul className={styles.list}>
-      {contacts &&
+      {contacts.length !== 0 &&
         contacts.map(contact => (
           <ContactsItem
             key={contact.id}
