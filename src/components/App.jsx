@@ -23,9 +23,9 @@ export class App extends React.Component {
     const newContact = { name: name, id: nanoid(), number: number };
     this.state.contacts.some(contact => name === contact.name)
       ? alert(`${name} is already in contacts.`)
-      : this.setState({
-          contacts: [...this.state.contacts, newContact],
-        });
+      : this.setState(prevState => ({
+          contacts: [...prevState.contacts, newContact],
+        }));
     event.currentTarget.elements.name.value = '';
     event.currentTarget.elements.number.value = '';
   };
@@ -33,6 +33,11 @@ export class App extends React.Component {
   handleSearch = event => {
     this.setState({ filter: event.currentTarget.value });
   };
+
+  handleFilter = () =>
+    this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
 
   handleDelete = id => {
     this.setState(prevState => ({
@@ -48,6 +53,7 @@ export class App extends React.Component {
         <h2 className={styles.title}>Contacts</h2>
         <Filter inputSearch={this.handleSearch} />
         <ContactsList
+          filteredArr={this.handleFilter()}
           contacts={this.state.contacts}
           filter={this.state.filter}
           onDelete={this.handleDelete}
