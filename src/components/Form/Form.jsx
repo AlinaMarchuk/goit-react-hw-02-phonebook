@@ -26,7 +26,9 @@ const Form = ({ formSubmit }) => {
           required
         />
       </label>
-      <button className={styles.btn}>Add contact</button>
+      <button className={styles.btn} type="submit">
+        Add contact
+      </button>
     </form>
   );
 };

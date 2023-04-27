@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
 const Filter = ({ inputSearch }) => {
@@ -13,5 +14,7 @@ const Filter = ({ inputSearch }) => {
     </>
   );
 };
+
+Filter.propTypes = { inputSearch: PropTypes.func.isRequired };
 
 export default Filter;
